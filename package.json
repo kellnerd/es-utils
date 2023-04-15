@@ -1,0 +1,16 @@
+{
+  "name": "@kellnerd/es-utils",
+  "version": "0.1.0",
+  "description": "Various small JavaScript utility functions",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kellnerd/es-utils.git"
+  },
+  "author": "David Kellner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kellnerd/es-utils/issues"
+  },
+  "homepage": "https://github.com/kellnerd/es-utils#readme"
+}
