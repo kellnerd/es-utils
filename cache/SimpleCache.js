@@ -3,7 +3,8 @@ import { FunctionCache } from './FunctionCache.js';
 /**
  * @template Params
  * @template Result
- * @extends {FunctionCache<Params,Result>}
+ * @template {string | number} Key
+ * @extends {FunctionCache<Params, Result, Key>}
  */
 export class SimpleCache extends FunctionCache {
 	/**

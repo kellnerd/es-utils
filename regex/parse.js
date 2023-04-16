@@ -15,7 +15,7 @@ export function escapeRegExp(string) {
  * Returns the value of the given pattern as a regular expression if it is enclosed between slashes.
  * Otherwise it returns the input string or throws for invalid regular expressions.
  * @param {string} pattern 
- * @returns {RegExp|string}
+ * @returns {RegExp | string}
  */
 export function getPattern(pattern) {
 	const match = pattern.match(regexPattern);

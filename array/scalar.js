@@ -2,7 +2,7 @@
 /**
  * Converts an array with a single element into a scalar.
  * @template T
- * @param {MaybeArray<T>} maybeArray 
+ * @param {T | T[]} maybeArray 
  * @returns A scalar or `undefined` if the conversion is not possible.
  */
 export function toScalar(maybeArray) {
@@ -16,7 +16,7 @@ export function toScalar(maybeArray) {
 /**
  * Converts an array with a single element into a scalar.
  * @template T
- * @param {MaybeArray<T>} maybeArray 
+ * @param {T | T[]} maybeArray 
  * @returns A scalar or the input array if the conversion is not possible.
  */
 export function preferScalar(maybeArray) {
@@ -27,7 +27,7 @@ export function preferScalar(maybeArray) {
 /**
  * Converts a scalar into an array with a single element.
  * @template T
- * @param {MaybeArray<T>} maybeArray 
+ * @param {T | T[]} maybeArray 
  */
 export function preferArray(maybeArray) {
 	if (!Array.isArray(maybeArray)) return [maybeArray];

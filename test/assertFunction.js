@@ -5,8 +5,8 @@ import assert from 'assert';
  * @template Input
  * @template Output
  * @template Args
- * @param {(input:Input,...args:Args)=>Output} testFunction Function which should be applied to the input values.
- * @param {[Input,Output][]} testCases Array of test cases, each element should contain the input and its expected output.
+ * @param {(input: Input, ...args: Args) => Output} testFunction Function which should be applied to the input values.
+ * @param {[Input, Output][]} testCases Array of test cases, each element should contain the input and its expected output.
  * @param  {Args} args Additional arguments for the test function.
  * @returns {number} The number of failed test cases.
  */

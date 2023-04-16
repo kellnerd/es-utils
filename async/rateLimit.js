@@ -25,10 +25,10 @@ function queue(operation) {
  * Limits the number of requests for the given operation within a time interval.
  * @template Params
  * @template Result
- * @param {(...args:Params)=>Result} operation Operation that should be rate-limited.
+ * @param {(...args: Params) => Result} operation Operation that should be rate-limited.
  * @param {number} interval Time interval (in ms).
  * @param {number} requestsPerInterval Maximum number of requests within the interval.
- * @returns {(...args:Params)=>Promise<Result>} Rate-limited version of the given operation.
+ * @returns {(...args: Params) => Promise<Result>} Rate-limited version of the given operation.
  */
 export function rateLimit(operation, interval, requestsPerInterval = 1) {
 	if (requestsPerInterval == 1) {
@@ -46,9 +46,9 @@ export function rateLimit(operation, interval, requestsPerInterval = 1) {
  * Limits the number of simultaneous requests for the given operation.
  * @template Params
  * @template Result
- * @param {(...args:Params)=>Result} operation Operation that should be limited in its use.
+ * @param {(...args: Params) => Result} operation Operation that should be limited in its use.
  * @param {number} concurrency Maximum number of concurrent requests at any time.
- * @returns {(...args:Params)=>Promise<Result>} Concurrency-limited version of the given operation.
+ * @returns {(...args: Params) => Promise<Result>} Concurrency-limited version of the given operation.
  */
 export function limit(operation, concurrency = 1) {
 	if (concurrency == 1) {

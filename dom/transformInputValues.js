@@ -1,6 +1,6 @@
+import { setReactInputValue } from './react.js';
 import { qsa } from './select.js';
 import { transform } from '../string/transform.js';
-import { setReactInputValue } from './react.js';
 
 export const defaultHighlightClass = 'content-changed';
 
@@ -8,7 +8,7 @@ export const defaultHighlightClass = 'content-changed';
  * Transforms the values of the selected input fields using the given substitution rules.
  * Highlights all updated input fields in order to allow the user to review the changes.
  * @param {string} inputSelector CSS selector of the input fields.
- * @param {SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
+ * @param {import('../types.js').SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
  * @param {object} [options]
  * @param {boolean} [options.isReactInput] Whether the input fields are manipulated by React.
  * @param {Event} [options.event] Event which should be triggered for changed input fields (optional, defaults to 'change').
@@ -45,7 +45,7 @@ export function transformInputValues(inputSelector, substitutionRules, {
  * Transforms the values of the selected input fields using the given substitution rules.
  * Highlights all updated input fields in order to allow the user to review the changes.
  * @param {string} inputSelector CSS selector of the input fields.
- * @param {SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
+ * @param {import('../types.js').SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
  * @deprecated Legacy function for bookmarklets (uses inline CSS for highlighting, change event is not configurable).
  */
 export function $transformInputValues(inputSelector, substitutionRules) {

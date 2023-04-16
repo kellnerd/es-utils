@@ -2,7 +2,7 @@
 /**
  * Creates a custom `URLSearchParams` object where each array is serialized into multiple parameters with the same name
  * instead of a single parameter with concatenated values (e.g. `{ a: [1, 2] }` becomes `a=1&a=2` instead of `a=1,2`).
- * @param {Object} params Dictionary of parameters.
+ * @param {import('../types').FormDataRecord} params Dictionary of parameters.
  */
 export function urlSearchMultiParams(params) {
 	const searchParams = new URLSearchParams();

@@ -2,7 +2,7 @@ import { transform } from './transform.js';
 
 /**
  * Default punctuation rules.
- * @type {SubstitutionRule[]}
+ * @type {import('../types.js').SubstitutionRule[]}
  */
 export const punctuationRules = [
 	/* quoted text */

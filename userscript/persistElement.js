@@ -5,7 +5,7 @@ import { dom } from '../dom/select.js';
  * @param {HTMLElement} element 
  * @param {keyof HTMLElement} attribute 
  * @param {keyof HTMLElementEventMap} eventType
- * @param {string|number|boolean} [defaultValue] Default value of the attribute.
+ * @param {string | number | boolean} [defaultValue] Default value of the attribute.
  */
 async function persistElement(element, attribute, eventType, defaultValue) {
 	if (!element.id) {
@@ -50,7 +50,7 @@ export function persistDetails(id, openByDefault) {
 
 /**
  * Persists the value of the given input field across page loads and origins.
- * @param {HTMLInputElement|HTMLTextAreaElement} element 
+ * @param {HTMLInputElement | HTMLTextAreaElement} element 
  * @param {string} [defaultValue]
  * @returns {Promise<HTMLInputElement>}
  */

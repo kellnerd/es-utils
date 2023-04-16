@@ -3,7 +3,7 @@ import { delay } from './delay.js';
 /**
  * Retries the given operation until the result is no longer undefined.
  * @template T
- * @param {() => MaybePromise<T>} operation 
+ * @param {() => T | Promise<T>} operation 
  * @param {Object} [options]
  * @param {number} [options.retries] Maximum number of retries.
  * @param {number} [options.wait] Number of ms to wait before the next try, disabled by default.

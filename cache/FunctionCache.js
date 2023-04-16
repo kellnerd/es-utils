@@ -1,6 +1,7 @@
 /**
  * @template Params
  * @template Result
+ * @template {string | number} Key
  */
 export class FunctionCache {
 	/**
