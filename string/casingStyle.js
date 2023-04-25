@@ -26,7 +26,7 @@ export function slugify(string) {
 	return encodeURIComponent(
 		string.trim()
 			.toLowerCase()
-			.replace(/\s+/g, '-')
+			.replaceAll(' ', '-')
 	);
 }
 
