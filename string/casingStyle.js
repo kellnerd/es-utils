@@ -27,6 +27,8 @@ export function slugify(string) {
 		string.trim()
 			.toLowerCase()
 			.replaceAll(' ', '-')
+			// keep only letters, numbers, underscores and hyphens
+			.replace(/[^\p{L}\d_-]+/gu, '')
 	);
 }
 
