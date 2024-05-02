@@ -2,12 +2,30 @@
 
 import { delay } from './delay.js';
 
-function rateLimitedQueue(operation, interval) {
-	let queue = Promise.resolve(); // empty queue is ready
+function rateLimitedQueue(operation, {
+	interval,
+	maxQueueSize = Infinity,
+	queueFullError = 'Max queue size reached',
+}) {
+	// Empty queue is ready.
+	let queue = Promise.resolve();
+	let queueSize = 0;
+
 	return (...args) => {
-		const result = queue.then(() => operation(...args)); // queue the next operation
-		// start the next delay, regardless of the last operation's success
+		if (queueSize >= maxQueueSize) {
+			return Promise.reject(new Error(queueFullError));
+		}
+
+		// Queue the next operation.
+		const result = queue.then(() => operation(...args));
+		queueSize++;
+
+		// Decrease queue size when the operation finishes (succeeds or fails).
+		result.then(() => { queueSize-- }, () => { queueSize-- });
+
+		// Start the next delay, regardless of the last operation's success.
 		queue = queue.then(() => delay(interval), () => delay(interval));
+
 		return result;
 	};
 }
@@ -29,16 +47,18 @@ function queue(operation) {
  * @param {object} options
  * @param {number} options.interval Time interval (in ms).
  * @param {number} [options.requestsPerInterval] Maximum number of requests within the interval.
+ * @param {number} [options.maxQueueSize] Maximum number of requests which are queued (optional).
+ * @param {string} [options.queueFullError] Error message when the queue is full.
  * @returns {(...args: Params) => Promise<Awaited<Result>>} Rate-limited version of the given operation.
  */
 export function rateLimit(operation, options) {
-	const { interval, requestsPerInterval = 1 } = options;
+	const { requestsPerInterval = 1 } = options;
 
 	if (requestsPerInterval == 1) {
-		return rateLimitedQueue(operation, interval);
+		return rateLimitedQueue(operation, options);
 	}
 
-	const queues = Array(requestsPerInterval).fill().map(() => rateLimitedQueue(operation, interval));
+	const queues = Array(requestsPerInterval).fill().map(() => rateLimitedQueue(operation, options));
 	let queueIndex = 0;
 
 	return (...args) => {
