@@ -26,16 +26,21 @@ function queue(operation) {
  * @template Params
  * @template Result
  * @param {(...args: Params) => Result} operation Operation that should be rate-limited.
- * @param {number} interval Time interval (in ms).
- * @param {number} requestsPerInterval Maximum number of requests within the interval.
+ * @param {object} options
+ * @param {number} options.interval Time interval (in ms).
+ * @param {number} [options.requestsPerInterval] Maximum number of requests within the interval.
  * @returns {(...args: Params) => Promise<Awaited<Result>>} Rate-limited version of the given operation.
  */
-export function rateLimit(operation, interval, requestsPerInterval = 1) {
+export function rateLimit(operation, options) {
+	const { interval, requestsPerInterval = 1 } = options;
+
 	if (requestsPerInterval == 1) {
 		return rateLimitedQueue(operation, interval);
 	}
+
 	const queues = Array(requestsPerInterval).fill().map(() => rateLimitedQueue(operation, interval));
 	let queueIndex = 0;
+
 	return (...args) => {
 		queueIndex = (queueIndex + 1) % requestsPerInterval; // use the next queue
 		return queues[queueIndex](...args); // return the result of the operation
