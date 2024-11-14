@@ -2,7 +2,7 @@
 /**
  * Transforms the given value using the given substitution rules.
  * @param {string} value
- * @param {import('../types').SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
+ * @param {import('../types.d.ts').SubstitutionRule[]} substitutionRules Pairs of values for search & replace.
  * @returns {string}
  */
 export function transform(value, substitutionRules) {

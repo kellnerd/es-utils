@@ -14,7 +14,7 @@ export function createHiddenInput(name, value) {
 
 /**
  * Creates a form with hidden inputs for the given data.
- * @param {import('../types').FormDataRecord} data Record with one or multiple values for each key.
+ * @param {import('../types.d.ts').FormDataRecord} data Record with one or multiple values for each key.
  */
 export function createHiddenForm(data) {
 	const form = document.createElement('form');

@@ -1,4 +1,4 @@
-import assert from 'assert';
+import assert from 'node:assert';
 
 /**
  * Asserts that the given test function returns the expected output for each input of the given test cases.
