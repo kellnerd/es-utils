@@ -142,6 +142,12 @@ const languageSpecificTestCases: Record<string, TestCase[]> = {
       "dashes used as brackets",
     ],
   ],
+  he: [
+    [
+      `דני אמר: "האם קראת את הספר 'המסע של ד"ר כהן' מאת ר' שלמה בר-מוחא"?`,
+      `דני אמר: ”האם קראת את הספר ’המסע של ד״ר כהן’ מאת ר׳ שלמה בר־מוחא”?`,
+    ],
+  ],
 };
 
 function itHandles(name: string, testCases: TestCase[]) {

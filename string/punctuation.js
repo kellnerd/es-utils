@@ -43,19 +43,20 @@ export const punctuationRules = [
 ];
 
 /**
- * Language-specific double and single quotes (RegEx replace values).
+ * Language-specific RegEx replace values for overridable rules.
  * @type {Record<string, string[]>}
  */
-const languageSpecificQuotes = {
+const languageSpecificOverrides = {
 	en: ['“$1”', '‘$1’'], // English
 	fr: ['« $1 »', '‹ $1 ›'], // French
 	de: ['„$1“', '‚$1‘'], // German
+	he: ['”$1”', '’$1’', '׳', '־'], // Hebrew
 };
 
 /**
- * Indices of the quotation rules (double and single quotes) in `punctuationRules`.
+ * Indices of the overridable rules (quotes, apostrophe and hyphen) in `punctuationRules`.
  */
-const quotationRuleIndices = [0, 2];
+const overrideRuleIndices = [0, 2, 5, 11];
 
 /**
  * Additional punctuation rules for certain languages, will be appended to the default rules.
@@ -68,6 +69,9 @@ const languageSpecificRules = {
 	ja: [ // Japanese
 		[/(?<=[^\p{L}\d]|^)-(.+?)-(?=[^\p{L}\d]|$)/ug, '–$1–'], // dashes used as brackets
 	],
+	he: [ // Hebrew
+		[/(?<=\S)"(?=\S)/g, '״'], // Hebrew acronyms (Rashei Teivot)
+	],
 };
 
 /**
@@ -76,12 +80,12 @@ const languageSpecificRules = {
  */
 export function punctuationRulesForLanguage(language) {
 	// create a deep copy of the quotation rules to prevent modifications of the default rules
-	let rules = punctuationRules.map((rule, index) => quotationRuleIndices.includes(index) ? [...rule] : rule);
+	let rules = punctuationRules.map((rule, index) => overrideRuleIndices.includes(index) ? [...rule] : rule);
 
 	// overwrite replace values for quotation rules with language-specific values (if they are existing)
 	const replaceValueIndex = 1;
-	languageSpecificQuotes[language]?.forEach((value, index) => {
-		const ruleIndex = quotationRuleIndices[index];
+	languageSpecificOverrides[language]?.forEach((value, index) => {
+		const ruleIndex = overrideRuleIndices[index];
 		rules[ruleIndex][replaceValueIndex] = value;
 	});
 
