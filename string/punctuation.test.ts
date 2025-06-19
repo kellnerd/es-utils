@@ -120,10 +120,20 @@ const unsupportedTestCases: TestCase[] = [
 
 const languageSpecificTestCases: Record<string, TestCase[]> = {
   de: [
+    [
+      `"Hast du Grass' 'Blechtrommel' gelesen?"`,
+      "„Hast du Grass’ ‚Blechtrommel‘ gelesen?“",
+    ],
     /* hyphens for abbreviated compound words */
     ["Rock- und Pop-Balladen", "Rock‐ und Pop‐Balladen"],
     ["Sonnenaufgang und -untergang", "Sonnenaufgang und ‐untergang"],
     ["Sonnenauf- und -untergang", "Sonnenauf‐ und ‐untergang"],
+  ],
+  fr: [
+    [
+      'La caissière du cinéma m\'a recommandé un "film sensationnel" !',
+      "La caissière du cinéma m’a recommandé un « film sensationnel » !",
+    ],
   ],
   ja: [
     [
