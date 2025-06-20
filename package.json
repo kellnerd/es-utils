@@ -1,6 +1,6 @@
 {
   "name": "@kellnerd/es-utils",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Various small JavaScript utility functions",
   "type": "module",
   "types": "types.d.ts",
