@@ -4,7 +4,6 @@ const nativeInputValueSetter = Object.getOwnPropertyDescriptor(HTMLInputElement.
 
 /**
  * Sets the value of an input element which has been manipulated by React.
- * Deprecated: Use setReactInputSelectTextareaValue instead
  * @param {HTMLInputElement} input 
  * @param {string} value 
  */
@@ -17,7 +16,6 @@ const nativeTextareaValueSetter = Object.getOwnPropertyDescriptor(HTMLTextAreaEl
 
 /**
  * Sets the value of a textarea input element which has been manipulated by React.
- * Deprecated: Use setReactInputSelectTextareaValue instead
  * @param {HTMLTextAreaElement} input 
  * @param {string} value 
  */
