@@ -23,3 +23,18 @@ export function setReactTextareaValue(input, value) {
 	nativeTextareaValueSetter.call(input, value);
 	input.dispatchEvent(new Event('input', { bubbles: true }));
 }
+
+/**
+ * Sets the value of a MusicBrainz input/select/textarea element which has been manipulated by React.
+ *
+ * MB React input logics often requires: input event, update value, then change event
+ *
+ * @param {HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement} input
+ * @param {string} value
+ * @see https://github.com/jesus2099/konami-command/blob/a94c502bd7d5f4f4e29c91c7ac2a52881c96821e/lib/SUPER.js#L163-L171
+ */
+export function setMBReactInputValue(input, value) {
+	input.dispatchEvent(new Event('input', { bubbles: true }));
+	(Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value').set).call(input, value);
+	input.dispatchEvent(new Event('change', { bubbles: true }));
+}
